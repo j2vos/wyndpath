@@ -29,7 +29,7 @@ dependencies = ["requests>=2.25"]
 Homepage = "https://console.wyndpath.com"
 Documentation = "https://console.wyndpath.com/docs"
 Guides = "https://console.wyndpath.com/scraper"
-Source = "https://github.com/j2vos/wyndpath"
+Source = "https://github.com/j2vosfr/wyndpath"
 
 [tool.setuptools]
 packages = ["wyndpath"]
