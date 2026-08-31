@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wyndpath"
+version = "1.0.0"
+description = "Official Python client for WyndPath — Europe-hosted web scraping & anti-bot API (bypasses Cloudflare & DataDome, returns JSON, pay-per-success)."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Jérémy D." }]
+keywords = [
+    "web-scraping", "scraping-api", "anti-bot", "datadome", "cloudflare",
+    "proxy-api", "residential-proxy", "vinted", "cardmarket", "leboncoin",
+    "captcha", "crawler", "data-extraction",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = ["requests>=2.25"]
+
+[project.urls]
+Homepage = "https://console.wyndpath.com"
+Documentation = "https://console.wyndpath.com/docs"
+Guides = "https://console.wyndpath.com/scraper"
+Source = "https://github.com/j2vos/wyndpath"
+
+[tool.setuptools]
+packages = ["wyndpath"]
