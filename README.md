@@ -105,6 +105,43 @@ except TargetBlocked as e:
 | 429 | `TooManyConcurrent` | too many parallel requests for your plan |
 | 502 | `TargetBlocked` | not fetched yet; WyndPath studies it automatically, retry later |
 
+## Proxy mode — use any language or tool, no code change
+
+Prefer to keep your existing stack (Scrapy, Selenium, Playwright, curl, or any HTTP
+client)? Point it at the WyndPath **proxy endpoint** — username is your API key,
+password is your WyndPath parameters (query string):
+
+```
+http://<API_KEY>:<params>@proxy.wyndpath.com:8888
+```
+
+HTTPS targets are intercepted, so disable TLS verification client-side (`-k` /
+`verify=False`) — the proxy presents its own certificate to read the request.
+
+```bash
+# curl
+curl -x "http://wk_your_key:render_js=1&country=fr@proxy.wyndpath.com:8888" \
+     -k "https://www.vinted.fr/api/v2/catalog/items?search_text=nike"
+```
+
+```python
+# requests
+import requests
+proxies = {"http": "http://wk_your_key:country=fr@proxy.wyndpath.com:8888",
+           "https": "http://wk_your_key:country=fr@proxy.wyndpath.com:8888"}
+r = requests.get("https://www.vinted.fr/api/v2/catalog/items?search_text=nike",
+                 proxies=proxies, verify=False)
+print(r.json()["items"][0]["title"])
+```
+
+```python
+# Scrapy: set in settings / meta
+# meta={"proxy": "http://wk_your_key:render_js=1@proxy.wyndpath.com:8888"}
+```
+
+Every request routes through the same WyndPath pipeline (anti-bot, sessions, billing,
+quota) as the REST API.
+
 ## How it works
 
 WyndPath tries the cheapest path first and escalates only if needed:
